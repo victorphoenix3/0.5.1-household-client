@@ -1,0 +1,12 @@
+.form-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: absolute;
+    top: 15%;
+    left: 30%;
+    width: 30%;
+    height: 40%;
+    box-shadow: 0 5px 10px grey;
+}

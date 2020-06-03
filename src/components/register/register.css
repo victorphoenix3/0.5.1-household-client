@@ -1,0 +1,14 @@
+.register-box {
+    position: absolute;
+    top: 15%;
+    left: 30%;
+    width: 40%;
+    height: 40%;
+    padding: 30px 5px 5px 5px !important;
+    box-shadow: 0 5px 10px grey;
+}
+
+.button-align {
+    display: flex;
+    justify-content: center;
+}
