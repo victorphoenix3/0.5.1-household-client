@@ -1,0 +1,28 @@
+.SidebarWrapperSwipeBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #32394650;
+  width: 50px;
+  height: 50px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  position: absolute;
+  top: 60px;
+  left: 0;
+  z-index: 1;
+}
+
+.SidebarWrapperIcon {
+  color: white;
+}
+
+.sidebar-wrapper {
+  height: 100%;
+  width: 250px;
+  margin-top: 20px;
+}
+
+.sidebar-wrapper .ant-avatar {
+  margin-bottom: 5px;
+}

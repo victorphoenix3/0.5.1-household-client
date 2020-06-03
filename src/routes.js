@@ -11,46 +11,53 @@ import {
 
 import { createBrowserHistory } from "history";
 
+import SidebarWrapper from "./components/SidebarWrapper";
+
 export const history = createBrowserHistory();
 
 // would add actual logic for checking if a user is authenticated soon
 
 const isAuthenticated = () => true;
 
+const privateRouteRender = (Component, props) => {
+  if (isAuthenticated()) {
+    return (
+      <SidebarWrapper>
+        <div className="App">
+          <Component {...props} />
+        </div>
+      </SidebarWrapper>
+    );
+  }
+  return (
+    <Redirect
+      to={{
+        pathname: "/login",
+      }}
+    />
+  );
+};
+
+const nonAuthRouteRender = (Component, props, noAuthRequired = false) => {
+  if (noAuthRequired && isAuthenticated()) {
+    return <Redirect to={{ pathname: "question" }} />;
+  }
+  return <Component {...props} />;
+};
+
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <DefaultRoute
     {...rest}
-    render={(props) =>
-      isAuthenticated() ? (
-        <Component {...props} />
-      ) : (
-        <Redirect
-          to={{
-            pathname: "/login",
-          }}
-        />
-      )
-    }
+    render={(props) => privateRouteRender(Component, props)}
   />
 );
 
 const Route = ({ component: Component, ensureNonAuth, ...rest }) => (
   <DefaultRoute
     {...rest}
-    render={(props) =>
-      ensureNonAuth && isAuthenticated() ? (
-        <Redirect
-          to={{
-            pathname: "/profile",
-          }}
-        />
-      ) : (
-        <Component {...props} />
-      )
-    }
+    render={(props) => nonAuthRouteRender(Component, props, ensureNonAuth)}
   />
 );
-
 export default () => (
   <Router history={history}>
     <Switch>
@@ -63,6 +70,19 @@ export default () => (
           <h3>You should only see this page if you're authenticated</h3>
         )}
       />
+      <PrivateRoute
+        path="/houses/join"
+        component={() => <h3>Join House!!</h3>}
+      />
+      <PrivateRoute
+        path="/houses/create"
+        component={() => <h3>Create House!!</h3>}
+      />
+      <PrivateRoute
+        path="/houses/all"
+        component={() => <h3>View your houses!!</h3>}
+      />
+
       <Route component={() => <h3>404!</h3>} />
     </Switch>
   </Router>
