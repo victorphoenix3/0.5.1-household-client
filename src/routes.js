@@ -65,7 +65,15 @@ export default () => (
       {/* you just import your component and add it here to be rendered */}
       <Route exact path="/" component={() => <h2>Home page!!</h2>} />
       <Route path="/login" component={() => <h2>login</h2>} />
-      <PrivateRoute exact path="/houses" component={HouseList} />
+      <PrivateRoute
+        path="/houses/join"
+        component={() => <h3>Join House!!</h3>}
+      />
+      <PrivateRoute
+        path="/houses/create"
+        component={() => <h3>Create House!!</h3>}
+      />
+      <PrivateRoute exact path="/houses/all" component={HouseList} />
       <PrivateRoute
         path="/houses/:id"
         component={() => <h2>House Detail Page</h2>}
@@ -75,18 +83,6 @@ export default () => (
         component={() => (
           <h3>You should only see this page if you're authenticated</h3>
         )}
-      />
-      <PrivateRoute
-        path="/houses/join"
-        component={() => <h3>Join House!!</h3>}
-      />
-      <PrivateRoute
-        path="/houses/create"
-        component={() => <h3>Create House!!</h3>}
-      />
-      <PrivateRoute
-        path="/houses/all"
-        component={() => <h3>View your houses!!</h3>}
       />
 
       <Route component={() => <h3>404!</h3>} />

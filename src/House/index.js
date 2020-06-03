@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Card, Avatar } from "antd";
+import { Card, Avatar, Skeleton } from "antd";
 
 import {
   LoginOutlined,
@@ -38,6 +38,26 @@ const renderMemberAvatars = (members) => {
   }
 };
 
+const LoadingHouseCard = () => {
+  return (
+    <Card
+      style={{ width: 300, marginTop: 16 }}
+      actions={[
+        <LoginOutlined key="login" />,
+        <ShareAltOutlined key="share" />,
+        <DeleteOutlined key="delete" />,
+      ]}
+    >
+      <Skeleton loading={true} active>
+        <Meta title="Card title" description="This is the description" />
+      </Skeleton>
+      <Skeleton loading={true} active>
+        <Meta title="Card title" description="This is the description" />
+      </Skeleton>
+    </Card>
+  );
+};
+
 const HouseCard = ({ name, id, invite_link, members }) => {
   const [showModal, setShowModal] = useState(false);
   const toggleModalState = () => setShowModal(!showModal);
@@ -69,4 +89,4 @@ const HouseCard = ({ name, id, invite_link, members }) => {
   );
 };
 
-export default HouseCard;
+export { HouseCard, LoadingHouseCard };
