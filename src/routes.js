@@ -10,6 +10,8 @@ import {
 } from "react-router-dom";
 
 import { createBrowserHistory } from "history";
+import { LoginForm } from "./components/login/login";
+import { RegForm } from "./components/register/registration";
 
 export const history = createBrowserHistory();
 
@@ -56,7 +58,8 @@ export default () => (
     <Switch>
       {/* you just import your component and add it here to be rendered */}
       <Route exact path="/" component={() => <h2>Home page!!</h2>} />
-      <Route path="/login" component={() => <h2>login</h2>} />
+      <Route path="/login" component={ LoginForm } />
+      <Route path="/registration" component={ RegForm } />
       <PrivateRoute
         path="/profile"
         component={() => (
