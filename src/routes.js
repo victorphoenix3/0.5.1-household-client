@@ -57,7 +57,11 @@ export default () => (
       {/* you just import your component and add it here to be rendered */}
       <Route exact path="/" component={() => <h2>Home page!!</h2>} />
       <Route path="/login" component={() => <h2>login</h2>} />
-      <PrivateRoute path="/houses" component={HouseList} />
+      <PrivateRoute exact path="/houses" component={HouseList} />
+      <PrivateRoute
+        path="/houses/:id"
+        component={() => <h2>House Detail Page</h2>}
+      />
       <PrivateRoute
         path="/profile"
         component={() => (

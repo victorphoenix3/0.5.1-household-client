@@ -25,3 +25,15 @@
 .house-card .anticon svg {
   color: #ff0066;
 }
+
+.house-share-modal a {
+  font-weight: 700;
+  display: block;
+  font-style: italic;
+}
+
+.house-share-modal .modal-link-wrapper {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}

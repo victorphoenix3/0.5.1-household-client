@@ -1,4 +1,8 @@
 @import "~antd/dist/antd.css";
+
+.css-1jgv6z-ToastContainer {
+  z-index: 1001 !important;
+}
 .App {
   text-align: center;
 }

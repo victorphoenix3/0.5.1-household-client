@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { Card, Avatar } from "antd";
+
 import {
   LoginOutlined,
   DeleteOutlined,
   ShareAltOutlined,
 } from "@ant-design/icons";
+
+import HouseShareModal from "./HouseShareModal";
 
 import "./index.css";
 
@@ -35,6 +39,8 @@ const renderMemberAvatars = (members) => {
 };
 
 const HouseCard = ({ name, id, invite_link, members }) => {
+  const [showModal, setShowModal] = useState(false);
+  const toggleModalState = () => setShowModal(!showModal);
   return (
     <Card
       className="house-card"
@@ -45,16 +51,20 @@ const HouseCard = ({ name, id, invite_link, members }) => {
         />
       }
       actions={[
-        <LoginOutlined
-          key="enter"
-          onClick={() => console.log("entering room..")}
-        />,
-        <ShareAltOutlined key="share" />,
+        <Link to={`/houses/${id}`}>
+          <LoginOutlined key="enter" />
+        </Link>,
+        <ShareAltOutlined key="share" onClick={toggleModalState} />,
         <DeleteOutlined key="leave" />,
       ]}
     >
       <Meta title={name} description="234B, MLH Street, NY USA" />
       {renderMemberAvatars(members)}
+
+      <HouseShareModal
+        showModal={showModal}
+        toggleModalState={toggleModalState}
+      />
     </Card>
   );
 };
