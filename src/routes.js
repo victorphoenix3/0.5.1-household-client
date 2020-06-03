@@ -10,7 +10,7 @@ import {
 } from "react-router-dom";
 
 import { createBrowserHistory } from "history";
-import HouseList from "./HouseList";
+import HouseList from "./components/HouseList";
 
 import SidebarWrapper from "./components/SidebarWrapper";
 
