@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 
 import { createBrowserHistory } from "history";
+import HouseList from "./HouseList";
 
 export const history = createBrowserHistory();
 
@@ -50,13 +51,13 @@ const Route = ({ component: Component, ensureNonAuth, ...rest }) => (
     }
   />
 );
-
 export default () => (
   <Router history={history}>
     <Switch>
       {/* you just import your component and add it here to be rendered */}
       <Route exact path="/" component={() => <h2>Home page!!</h2>} />
       <Route path="/login" component={() => <h2>login</h2>} />
+      <PrivateRoute path="/houses" component={HouseList} />
       <PrivateRoute
         path="/profile"
         component={() => (
