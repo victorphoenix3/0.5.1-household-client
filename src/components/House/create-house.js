@@ -36,7 +36,7 @@ export const NewHouse = () => {
         <Button type="primary" htmlType="submit">
           Create House
         </Button>
-        <p><a href="./houses/all">Go back to House List.</a></p>
+        <p><a href="/houses/all">Go back to Home Page.</a></p>
       </Form.Item>
     </Form>
   );
