@@ -9,6 +9,8 @@ import {
   Redirect,
 } from "react-router-dom";
 
+import { getAuthToken } from "./utils";
+
 import { createBrowserHistory } from "history";
 import HouseList from "./components/HouseList";
 import { LoginForm } from "./components/login/login";
@@ -21,7 +23,7 @@ export const history = createBrowserHistory();
 
 // would add actual logic for checking if a user is authenticated soon
 
-const isAuthenticated = () => true;
+const isAuthenticated = () => Boolean(getAuthToken());
 
 const privateRouteRender = (Component, props) => {
   if (isAuthenticated()) {
