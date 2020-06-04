@@ -78,7 +78,8 @@ export class NewHouse extends React.Component {
         </Form.Item>
 
         <Form.Item >
-          <Button type="primary" htmlType="submit">
+          <Button type="primary" htmlType="submit" 
+            onClick={(event) => this.handleClick(event)}>
             Create House
           </Button>
           <p><a href="/houses/all">Go back to House List.</a></p>
