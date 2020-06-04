@@ -19,9 +19,9 @@ const HouseShareModal = ({
     >
       <p>Here is the link to invite your friends to this house</p>
       <div className="modal-link-wrapper">
-        <Input readOnly value={sharableLink} />
+        <Input readOnly value={shareableLink} />
         <CopyToClipboard
-          text={sharableLink}
+          text={shareableLink}
           onCopy={() => {
             addToast("Copied to clipboard", { appearance: "success" });
           }}
