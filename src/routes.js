@@ -13,6 +13,7 @@ import { createBrowserHistory } from "history";
 import HouseList from "./components/HouseList";
 
 import SidebarWrapper from "./components/SidebarWrapper";
+import HouseJoin from "./components/HouseJoin";
 
 export const history = createBrowserHistory();
 
@@ -65,13 +66,10 @@ export default () => (
       {/* you just import your component and add it here to be rendered */}
       <Route exact path="/" component={() => <h2>Home page!!</h2>} />
       <Route path="/login" component={() => <h2>login</h2>} />
-      <PrivateRoute
-        path="/houses/join"
-        component={() => <h3>Join House!!</h3>}
-      />
+      <PrivateRoute path="/houses/join" component={HouseJoin} />
       <PrivateRoute
         path="/houses/create"
-        component={() => <h3>Create House!!</h3>}
+        component={() => <h3>House create !!!</h3>}
       />
       <PrivateRoute exact path="/houses/all" component={HouseList} />
       <PrivateRoute

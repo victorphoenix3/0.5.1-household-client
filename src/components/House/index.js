@@ -28,7 +28,7 @@ const renderMemberAvatars = (members) => {
   if (members && members.length > 0) {
     return (
       <div className="member-avatars">
-        <p>{members.length} housemates.</p>
+        <p>3 tasks are overdue.</p>
         {members.map((member, index) => (
           <MemberAvatar key={index} member={member} />
         ))}

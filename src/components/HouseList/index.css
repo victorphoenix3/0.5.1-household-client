@@ -10,7 +10,6 @@
 
 .house-list-wrapper .no-house-msg {
   font-size: 1.2rem;
-  z-index: 1002;
   margin: auto;
-  margin-top: 30px;
+  margin-top: 40px;
 }

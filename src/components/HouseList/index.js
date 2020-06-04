@@ -1,5 +1,5 @@
 import React from "react";
-import { Row, Col } from "antd";
+import { Row, Col, Empty } from "antd";
 import { Link } from "react-router-dom";
 
 import "./index.css";
@@ -57,9 +57,13 @@ class HouseList extends React.Component {
       ));
     } else {
       return (
-        <p className="no-house-msg">
-          You've no house yet. <Link to="/houses/create">Create a house.</Link>
-        </p>
+        <div className="no-house-msg">
+          <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
+          <p className="">
+            You've no house yet.{" "}
+            <Link to="/houses/create">Create a house.</Link>
+          </p>
+        </div>
       );
     }
   };
