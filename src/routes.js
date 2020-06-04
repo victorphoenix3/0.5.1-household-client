@@ -11,6 +11,8 @@ import {
 
 import { createBrowserHistory } from "history";
 import HouseList from "./components/HouseList";
+import { LoginForm } from "./components/login/login";
+import { RegForm } from "./components/register/registration";
 
 import SidebarWrapper from "./components/SidebarWrapper";
 import HouseJoin from "./components/HouseJoin";
@@ -64,9 +66,10 @@ export default () => (
   <Router history={history}>
     <Switch>
       {/* you just import your component and add it here to be rendered */}
-      <Route exact path="/" component={() => <h2>Home page!!</h2>} />
-      <Route path="/login" component={() => <h2>login</h2>} />
+      <Route exact path="/" component={() => <Redirect to="/login" />} />
       <PrivateRoute path="/houses/join" component={HouseJoin} />
+      <Route path="/login" component={LoginForm} />
+      <Route path="/registration" component={RegForm} />
       <PrivateRoute
         path="/houses/create"
         component={() => <h3>House create !!!</h3>}
