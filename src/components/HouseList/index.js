@@ -1,12 +1,26 @@
 import React from "react";
 import { Row, Col, Empty } from "antd";
 import { Link } from "react-router-dom";
+import { useToasts } from "react-toast-notifications";
+import HTTPClient from "../../HTTPClient";
+import { getAuthHeaders } from "../../utils";
 
 import "./index.css";
 
 import { HouseCard, LoadingHouseCard } from "../House";
 
+function withToast(Component) {
+  return function WrappedComponent(props) {
+    const toastFuncs = useToasts();
+    return <Component {...props} {...toastFuncs} />;
+  };
+}
+
 const House = HouseCard;
+
+const client = new HTTPClient(process.env.REACT_APP_API_URL, {
+  ...getAuthHeaders(),
+});
 
 class HouseList extends React.Component {
   state = {
@@ -16,19 +30,24 @@ class HouseList extends React.Component {
   componentDidMount() {
     this.fetchHouses();
   }
-  fetchHouses = () => {
+  fetchHouses = async () => {
     this.setState({
       loading: true,
     });
-    const houses = [
-      { id: 123, name: "Eyitayo's House", members: ["A", "B", "C"] },
-      { id: 123, name: "Teymour's House", members: ["A", "B", "C"] },
-      { id: 123, name: "Gabriel's House", members: ["A", "B", "C"] },
-      { id: 123, name: "Jayati's House", members: ["A", "B", "C"] },
-      { id: 123, name: "Raymond's House", members: ["A", "B", "C"] },
-      { id: 123, name: "Jon's House", members: ["A", "B", "C"] },
-      { id: 123, name: "Swift's House", members: ["A", "B", "C"] },
-    ];
+    const res = await client.get("/house/user", {});
+    const { success, data } = res;
+    let houses = [];
+    if (success) {
+      houses = data.data;
+      console.log(houses);
+      this.props.addToast("Fetched houses successfuly.", {
+        appearance: "success",
+      });
+    } else {
+      this.props.addToast("Fetched failed to fetch houses.", {
+        appearance: "error",
+      });
+    }
     this.setState({
       houses,
       loading: false,
@@ -50,9 +69,9 @@ class HouseList extends React.Component {
       );
     }
     if (houses && houses.length > 0) {
-      return houses.map(({ id, name, members }) => (
+      return houses.map(({ house_id, name,description, members = ["E.O", "T.A"] }) => (
         <Col sm={24} md={12} lg={6}>
-          <House id={id} name={name} members={members} />
+          <House id={house_id} name={name} members={members} description={description} />
         </Col>
       ));
     } else {
@@ -77,4 +96,4 @@ class HouseList extends React.Component {
   }
 }
 
-export default HouseList;
+export default withToast(HouseList);

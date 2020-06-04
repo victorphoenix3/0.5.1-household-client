@@ -58,7 +58,7 @@ const LoadingHouseCard = () => {
   );
 };
 
-const HouseCard = ({ name, id, invite_link, members }) => {
+const HouseCard = ({ name, id, members, description }) => {
   const [showModal, setShowModal] = useState(false);
   const toggleModalState = () => setShowModal(!showModal);
   return (
@@ -78,10 +78,12 @@ const HouseCard = ({ name, id, invite_link, members }) => {
         <DeleteOutlined key="leave" />,
       ]}
     >
-      <Meta title={name} description="234B, MLH Street, NY USA" />
+      <Meta title={name} description={description} />
       {renderMemberAvatars(members)}
 
       <HouseShareModal
+        // should fetch/generate invite link
+        shareableLink={"www.google.com"}
         showModal={showModal}
         toggleModalState={toggleModalState}
       />
