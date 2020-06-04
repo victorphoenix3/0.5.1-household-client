@@ -6,7 +6,7 @@ import { CopyToClipboard } from "react-copy-to-clipboard";
 const HouseShareModal = ({
   showModal,
   toggleModalState,
-  sharableLink = "https://www.google.com",
+  shareableLink = "https://www.google.com",
 }) => {
   const { addToast } = useToasts();
   return (
